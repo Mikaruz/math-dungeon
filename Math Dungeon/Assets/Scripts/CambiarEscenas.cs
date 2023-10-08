@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class CambiarEscenas : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -13,6 +13,11 @@ public class CambiarEscenas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
+    }
+
+    public void jugar()
+    {
+         SceneManager.LoadScene(1);
     }
 }
