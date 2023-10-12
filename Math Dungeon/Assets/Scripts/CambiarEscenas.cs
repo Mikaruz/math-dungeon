@@ -16,8 +16,13 @@ public class CambiarEscenas : MonoBehaviour
        
     }
 
-    public void jugar()
+    public void Jugar()
     {
          SceneManager.LoadScene(1);
+    }
+
+    public void Salir()
+    {
+        Application.Quit();
     }
 }
