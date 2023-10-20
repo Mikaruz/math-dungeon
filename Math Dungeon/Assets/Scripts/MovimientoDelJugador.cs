@@ -24,10 +24,15 @@ public class MovimientoDelJugador : MonoBehaviour
     [Header("Animación")]
     private Animator animator;
 
+    [Header("Respawn")]
+    private Vector3 respawnPoint;
+   
+
     private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        respawnPoint = transform.position;
     }
 
     private void Update()
@@ -39,8 +44,9 @@ public class MovimientoDelJugador : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             salto = true;
-            Debug.Log(salto);
         }
+
+        
     }
 
     private void FixedUpdate()
@@ -82,5 +88,16 @@ public class MovimientoDelJugador : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(controladorSuelo.position, dimensionesCaja);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Caida")
+        {
+            transform.position = respawnPoint;
+        }else if(collision.tag == "Checkpoint")
+        {
+            respawnPoint = transform.position;
+        }
     }
 }
