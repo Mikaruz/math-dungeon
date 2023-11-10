@@ -7,6 +7,8 @@ TagManager:
   - Moneda
   - Caida
   - Checkpoint
+  - Gema
+  - VidaCorazon
   layers:
   - Default
   - TransparentFX
@@ -41,6 +43,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Tierra
+    uniqueID: 1314152453
+    locked: 0
   - name: Fondo
     uniqueID: 3305361823
     locked: 0

@@ -19,7 +19,7 @@ public class Puntaje : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textMeshProUGUI.text = "Puntaje:" + puntos.ToString("0");
+        textMeshProUGUI.text = "x" + puntos.ToString("0");
     }
 
     public void SumarPuntos(float puntosEntrada)

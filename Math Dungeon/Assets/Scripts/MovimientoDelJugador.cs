@@ -6,6 +6,10 @@ public class MovimientoDelJugador : MonoBehaviour
 {
     private Rigidbody2D rb2d;
 
+    
+
+
+
     [Header("Movimiento")]
     private float movimientoHorizontal = 0f;
     [SerializeField] private float velocidadDeMovimiento;
@@ -24,15 +28,18 @@ public class MovimientoDelJugador : MonoBehaviour
     [Header("Animación")]
     private Animator animator;
 
-    [Header("Respawn")]
-    private Vector3 respawnPoint;
-   
+
+    [SerializeField] private Puntaje puntajeMoneda;
+    [SerializeField] private Puntaje puntajeGema;
 
     private void Start()
     {
+       
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        respawnPoint = transform.position;
+        
+      
+
     }
 
     private void Update()
@@ -92,12 +99,17 @@ public class MovimientoDelJugador : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Caida")
+        if (collision.CompareTag("Moneda"))
         {
-            transform.position = respawnPoint;
-        }else if(collision.tag == "Checkpoint")
-        {
-            respawnPoint = transform.position;
+            puntajeMoneda.SumarPuntos(1);
+            Destroy(collision.gameObject); // Destruye la moneda
         }
+        else if (collision.CompareTag("Gema"))
+        {
+            puntajeGema.SumarPuntos(1);
+            Destroy(collision.gameObject); // Destruye la gema
+        }
+
+
     }
 }

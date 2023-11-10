@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class CambiarEscenas : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
     void Start()
     {
         
@@ -18,7 +18,9 @@ public class CambiarEscenas : MonoBehaviour
 
     public void Jugar()
     {
-         SceneManager.LoadScene(1);
+        
+        SceneManager.LoadScene(1);
+
     }
 
     public void Salir()

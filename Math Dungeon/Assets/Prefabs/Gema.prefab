@@ -9,13 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3213740414694145847}
-  - component: {fileID: 1457583377559734090}
   - component: {fileID: 307760213698563509}
   - component: {fileID: 4756162478781634403}
   - component: {fileID: 3938710708065683928}
   m_Layer: 0
   m_Name: Gema
-  m_TagString: Untagged
+  m_TagString: Gema
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,20 +34,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1457583377559734090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7643900274443660206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b00c8f9c8e44c540853f07f42be00b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cantidadPuntos: 5
-  puntaje: {fileID: 0}
 --- !u!212 &307760213698563509
 SpriteRenderer:
   m_ObjectHideFlags: 0
