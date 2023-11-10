@@ -10,21 +10,22 @@ public class BarraDeVida : MonoBehaviour
     private Animator animator;
   
 
-    void Start()
+    void Awake()
     {
        slider = GetComponent<Slider>();
        animator = GetComponent<Animator>();
     }
 
-    public void CambiarVidaMaxima(float vidaMaxima)
-    {
-        slider.maxValue = vidaMaxima;
-    }
-
+    
     public void CambiarVidaActual(float cantidadVida)
     {
         slider.value = cantidadVida;
         animator.SetTrigger("Golpe");
+    }
+
+    public void CambiarVidaMaxima(float vidaMaxima)
+    {
+        slider.maxValue = vidaMaxima;
     }
 
     public void InicializarBarraDeVida(float cantidadVida)

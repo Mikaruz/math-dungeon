@@ -7,10 +7,8 @@ public class VidaDelJugador : MonoBehaviour
 
     [Header("Vida")]
     [SerializeField] private float vida;
-    [SerializeField] private float vidaMaxima;
+    [SerializeField] private float vidaTotal;
     [SerializeField] private BarraDeVida barraDeVida;
-
-    
 
     [Header("Respawn")]
     private Vector3 respawnPoint;
@@ -18,25 +16,20 @@ public class VidaDelJugador : MonoBehaviour
     void Start()
     {
         respawnPoint = transform.position;
-        vida = vidaMaxima;
+        vida = vidaTotal;
         barraDeVida.InicializarBarraDeVida(vida);
     }
 
     // Update is called once per frame
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-      
-
-
-
+    { 
         if (collision.tag == "Caida")
         {
             vida--;
             barraDeVida.CambiarVidaActual(vida);
+
             if (vida <= 0)
             {
-                // Acciones para el estado de Game Over
-                // Por ejemplo, puedes mostrar un mensaje de Game Over o reiniciar el nivel.
                 Debug.Log("¡Game Over!");
             }
             else
@@ -48,7 +41,7 @@ public class VidaDelJugador : MonoBehaviour
         {
             respawnPoint = transform.position;
         }
-        else if (collision.tag == "VidaCorazon" && vida != vidaMaxima)
+        else if (collision.tag == "VidaCorazon" && vida != vidaTotal)
         {
             vida++;
             Destroy(collision.gameObject);
