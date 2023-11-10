@@ -9,14 +9,12 @@ public class BarraDeVida : MonoBehaviour
     private Slider slider;
     private Animator animator;
   
-
     void Awake()
     {
        slider = GetComponent<Slider>();
        animator = GetComponent<Animator>();
     }
 
-    
     public void CambiarVidaActual(float cantidadVida)
     {
         slider.value = cantidadVida;

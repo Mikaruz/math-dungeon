@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class VidaDelJugador : MonoBehaviour
 {
-
     [Header("Vida")]
     [SerializeField] private float vida;
     [SerializeField] private float vidaTotal;
@@ -20,7 +19,6 @@ public class VidaDelJugador : MonoBehaviour
         barraDeVida.InicializarBarraDeVida(vida);
     }
 
-    // Update is called once per frame
     private void OnTriggerEnter2D(Collider2D collision)
     { 
         if (collision.tag == "Caida")

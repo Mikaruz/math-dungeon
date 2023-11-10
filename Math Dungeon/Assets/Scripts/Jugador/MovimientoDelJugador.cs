@@ -6,10 +6,6 @@ public class MovimientoDelJugador : MonoBehaviour
 {
     private Rigidbody2D rb2d;
 
-    
-
-
-
     [Header("Movimiento")]
     private float movimientoHorizontal = 0f;
     [SerializeField] private float velocidadDeMovimiento;
@@ -28,18 +24,14 @@ public class MovimientoDelJugador : MonoBehaviour
     [Header("Animación")]
     private Animator animator;
 
-
+    [Header("Puntaje")]
     [SerializeField] private Puntaje puntajeMoneda;
     [SerializeField] private Puntaje puntajeGema;
 
     private void Start()
     {
-       
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        
-      
-
     }
 
     private void Update()
@@ -52,8 +44,6 @@ public class MovimientoDelJugador : MonoBehaviour
         {
             salto = true;
         }
-
-        
     }
 
     private void FixedUpdate()
@@ -102,14 +92,12 @@ public class MovimientoDelJugador : MonoBehaviour
         if (collision.CompareTag("Moneda"))
         {
             puntajeMoneda.SumarPuntos(1);
-            Destroy(collision.gameObject); // Destruye la moneda
+            Destroy(collision.gameObject);
         }
         else if (collision.CompareTag("Gema"))
         {
             puntajeGema.SumarPuntos(1);
-            Destroy(collision.gameObject); // Destruye la gema
+            Destroy(collision.gameObject); 
         }
-
-
     }
 }

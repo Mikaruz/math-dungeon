@@ -8,15 +8,11 @@ public class Puntaje : MonoBehaviour
     private float puntos;
     private TextMeshProUGUI textMeshProUGUI;
 
-
-
-    // Start is called before the first frame update
     void Start()
     {
         textMeshProUGUI = GetComponent<TextMeshProUGUI>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         textMeshProUGUI.text = "x" + puntos.ToString("0");
