@@ -20,6 +20,8 @@ public class MovimientoDelJugador : MonoBehaviour
     [SerializeField] private Vector3 dimensionesCaja;
     [SerializeField] private bool enSuelo;
     private bool salto = false;
+    private bool enDialogo = false;
+
 
     [Header("Animación")]
     private Animator animator;
@@ -36,40 +38,75 @@ public class MovimientoDelJugador : MonoBehaviour
 
     private void Update()
     {
-        movimientoHorizontal = Input.GetAxisRaw("Horizontal") * velocidadDeMovimiento;
-
-        animator.SetFloat("Horizontal", Mathf.Abs(movimientoHorizontal));
-
-        if (Input.GetButtonDown("Jump"))
+        if (!enDialogo)
         {
-            salto = true;
+            movimientoHorizontal = Input.GetAxisRaw("Horizontal") * velocidadDeMovimiento;
+
+            animator.SetFloat("Horizontal", Mathf.Abs(movimientoHorizontal));
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                salto = true;
+            }
         }
+        else
+        {
+            rb2d.velocity = new Vector2(0f, rb2d.velocity.y);
+        }
+      
     }
+
+    public void EstoyConversando()
+    {
+        enDialogo = true;
+        rb2d.velocity = new Vector2(0f, rb2d.velocity.y);
+        animator.SetBool("enDialogo", enDialogo);
+    }
+
+    public void TerminarConversacion()
+    {
+        enDialogo = false;
+        animator.SetBool("enDialogo", enDialogo);
+    }
+
 
     private void FixedUpdate()
     {
-        enSuelo = Physics2D.OverlapBox(controladorSuelo.position, dimensionesCaja, 0f, queEsSuelo);
-        animator.SetBool("enSuelo", enSuelo);
-        Mover(movimientoHorizontal * Time.fixedDeltaTime, salto);
-        salto = false;
+        
+            enSuelo = Physics2D.OverlapBox(controladorSuelo.position, dimensionesCaja, 0f, queEsSuelo);
+            animator.SetBool("enSuelo", enSuelo);
+        
+            Mover(movimientoHorizontal * Time.fixedDeltaTime, salto);
+            salto = false;
+        
     }
    
     private void Mover(float mover, bool saltar)
     {
-        Vector3 velocidadObjetivo = new Vector2(mover, rb2d.velocity.y);
-        rb2d.velocity = Vector3.SmoothDamp(rb2d.velocity, velocidadObjetivo, ref velocidad, suavizadoDeMovimiento);
-
-        if (mover > 0 && !mirandoDerecha)
+        if (!enDialogo)
         {
-            Girar();
-        } else if (mover <0 && mirandoDerecha) {
-            Girar();
+            Vector3 velocidadObjetivo = new Vector2(mover, rb2d.velocity.y);
+            rb2d.velocity = Vector3.SmoothDamp(rb2d.velocity, velocidadObjetivo, ref velocidad, suavizadoDeMovimiento);
+
+            if (mover > 0 && !mirandoDerecha)
+            {
+                Girar();
+            }
+            else if (mover < 0 && mirandoDerecha)
+            {
+                Girar();
+            }
+
+            if (enSuelo && saltar)
+            {
+                enSuelo = false;
+
+                rb2d.AddForce(new Vector2(0f, fuerzaDeSalto));
+            }
         }
-
-        if (enSuelo && saltar) {
-            enSuelo = false;
-
-            rb2d.AddForce(new Vector2(0f, fuerzaDeSalto));
+        else
+        {
+            rb2d.velocity = new Vector2(0f, rb2d.velocity.y);
         }
     }
 

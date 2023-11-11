@@ -16,6 +16,16 @@ public class CambiarEscenas : MonoBehaviour
 
     public void Jugar()
     { 
+        SceneManager.LoadScene(2);
+    }
+
+    public void Menu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void Creditos()
+    {
         SceneManager.LoadScene(1);
     }
 
